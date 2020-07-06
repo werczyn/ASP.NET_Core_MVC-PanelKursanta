@@ -1,0 +1,73 @@
+﻿@model IEnumerable<IPBProjekt.Models.Dokument>
+
+@{
+    ViewData["Title"] = "Dokumenty";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Kursant.NumerKursanta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kursant.EmailAdress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kursant.DataUrodzenia)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kursant.Imie)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Kursant.Nazwisko)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzySprawdzony)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            @if (item.Kursant.NumerKursanta == null)
+            {
+                <td>
+                    Nie przyznano
+                </td>
+            }
+            else
+            {
+                <td>
+                    @Html.DisplayFor(modelItem => item.Kursant.NumerKursanta)
+                </td>
+            }
+            <td>
+                @Html.DisplayFor(modelItem => item.Kursant.EmailAdress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kursant.DataUrodzenia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kursant.Imie)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Kursant.Nazwisko)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzySprawdzony)
+            </td>
+            <td>
+                @if (!item.CzySprawdzony)
+                {
+                    <a asp-action="WyswietlDokument" asp-route-idOsoba="@item.Kursant.IdOsoba" asp-route-idWydzialu="@ViewBag.idWydzialu">WyswietlDokument</a>
+                }
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

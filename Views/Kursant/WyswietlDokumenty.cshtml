@@ -1,0 +1,80 @@
+﻿@model IEnumerable<IPBProjekt.Models.Dokument>
+
+@{
+    ViewData["Title"] = "WyswietlDokumenty";
+}
+
+<h1>WyswietlDokumenty</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WydzialKomunikacji.Miasto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WydzialKomunikacji.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WydzialKomunikacji.NumerMieszkania)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzySprawdzony)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzyPrzyjety)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CzyWyslany)
+            </th>
+            <th>
+                Opis
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.WydzialKomunikacji.Miasto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WydzialKomunikacji.Ulica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.WydzialKomunikacji.NumerMieszkania)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzySprawdzony)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzyPrzyjety)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CzyWyslany)
+            </td>
+            <td>
+                @if (item.CzyPrzyjety)
+                {
+                    @:Przyjęto wniosek
+                }
+                else if (item.CzySprawdzony)
+                {
+                    @:Odrzucono wniosek
+                }
+                else if (item.CzyWyslany)
+                {
+                    @:Wysłano wniosek
+                }
+            </td>
+            <td>
+                @if (!item.CzySprawdzony)
+                {
+                    <a asp-action="UsunDokument" asp-route-id="@item.IdDokument", asp-route-idOsoba="@item.IdOsoba">Delete</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

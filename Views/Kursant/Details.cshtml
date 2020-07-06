@@ -1,0 +1,58 @@
+﻿@model IPBProjekt.Models.Kursant
+
+@{
+    ViewData["Title"] = "DaneKursanta";
+}
+
+    <h1>Dane Kursanta</h1>
+
+<div>
+    <h4>Kursant</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.NumerKursanta)
+        </dt>
+        @if (Model.NumerKursanta == null)
+        {
+            <dd class="col-sm-10">
+                Nie przyznano numeru kursanta
+            </dd>
+        }
+        else
+        {
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NumerKursanta)
+            </dd>
+        }
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EmailAdress)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EmailAdress)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DataUrodzenia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DataUrodzenia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Imie)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Imie)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Nazwisko)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Nazwisko)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.IdOsoba">Edit</a> |
+    <a asp-action="Index" asp-route-id="@Model.IdOsoba">Wybierz wydział komunikacji </a> |
+    <a asp-action="WyswietlDokumenty" asp-route-idOsoba="@Model.IdOsoba">WyswietlDokumenty</a>
+</div>

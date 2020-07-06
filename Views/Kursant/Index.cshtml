@@ -1,0 +1,43 @@
+﻿@model IEnumerable<IPBProjekt.Models.WydzialKomunikacji>
+
+@{
+    ViewData["Title"] = "Wybierz wydział komunikacji";
+}
+
+<h1>Index</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Miasto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ulica)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumerMieszkania)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miasto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ulica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumerMieszkania)
+            </td>
+            <td>
+                <a asp-action="WyslijDokument" asp-route-idWydzialu="@item.NumerWydzialu" asp-route-idOsoba="@ViewBag.idOsoba">Wyślij dokument</a>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
